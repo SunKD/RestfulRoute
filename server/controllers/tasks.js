@@ -30,7 +30,7 @@ module.exports = () => {
         },
 
         readOne: (req, res) => {
-            Tasks.fundOne({ _id: req.params.id }, function (err, data) {
+            Tasks.findOne({ _id: req.params.id }, function (err, data) {
                 if (err) {
                     res.json(err);
                 }
