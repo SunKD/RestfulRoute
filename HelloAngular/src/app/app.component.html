@@ -1,18 +1,20 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div style="text-align:center">
-  <!-- <h1>
-   {{ title }}
+  <h1>
+    {{ title }}
   </h1>
-  <h1>All the tasks</h1> -->
-  <!-- <button (click)="onButtonClicked()" class="btn btn-info">Get All Tasks</button>
-  <div *ngFor= "let task of tasks">
-    <h3>{{task.title}} <button (click)="onButtonClickParam(task._id)">Show</button></h3>
-    
+  <h1>All the tasks</h1>
+  <button (click)="onButtonClicked()" class="btn btn-info">Get All Tasks</button>
+  <div *ngFor="let task of tasks">
+    <h3>{{task.title}}
+      <button (click)="onButtonClickParam(task._id)">Show</button>
+    </h3>
+
   </div>
-  
-  
-    <div *ngIf="showtask">
-      <h2>Show A Task</h2>
-        <p>{{showtask.title}}</p>
-        <p>{{showtask.description}}</p>
-</div> -->
+
+
+  <div *ngIf="showtask">
+    <h2>Show A Task</h2>
+    <p>{{showtask.title}}</p>
+    <p>{{showtask.description}}</p>
+  </div>
