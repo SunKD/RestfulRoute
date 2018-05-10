@@ -1,11 +1,12 @@
-let mongoose = require('mongoose');
-let Tasks = require('./models.js');
-let bp = require('body-parser');
+// let mongoose = require('mongoose');
+// let Tasks = require('../models/task.js');
+// let bp = require('body-parser');
 
 module.exports = () => {
+    var Tasks = require('../models/task');
     return {
         readAll: (req, res) => {
-            Task.find({}, function (err, tasks) {
+            Tasks.find({}, function (err, tasks) {
                 if (err) {
                     console.log("err");
                     res.json(err);
@@ -16,7 +17,7 @@ module.exports = () => {
         },
 
         create: (req, res) => {
-            let newTask = new Task({
+            let newTask = new Tasks({
                 title: req.body.title,
                 description: req.body.description,
             })

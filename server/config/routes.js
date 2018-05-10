@@ -1,11 +1,10 @@
 
-const c = require('/controller.js');
-let bp = require('body-parser');
-let mongoose = require('mongoose');
+const c = require('../controllers/tasks')();
+// let bp = require('body-parser');
+// let mongoose = require('mongoose');
 
 
 module.exports = (app) => {
-
 
     app.get('/tasks', function (req, res) {
         c.readAll(req, res);
