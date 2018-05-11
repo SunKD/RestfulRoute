@@ -44,7 +44,7 @@ module.exports = () => {
                 'description': req.body.description,
                 'completed': req.body.completed
             }
-            Tasks.updateOne({ _id: req.params.id }, undatedInfo, function (err, datas) {
+            Tasks.updateOne({ _id: req.params.id }, updateInfo, function (err, datas) {
                 if (err) {
                     res.json(err);
                 } res.json(datas);

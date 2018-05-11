@@ -19,6 +19,20 @@ export class HttpService {
     return this._http.get('/tasks/' + id);
   }
 
+  addTask(newtask){
+    return this._http.post('/tasks', newtask);
+  }
+
+  updateTask(updateInfo, id:String){
+    return this._http.put('/tasks/' +id, updateInfo);
+  }
+
+  deleteTask(id:String){
+    return this._http.delete('/tasks/' + id);
+  }
+
+  
+
   // getPokemon() {
   //   let bulbasaur = this._http.get('https://pokeapi.co/api/v2/pokemon/1/');
   //   bulbasaur.subscribe(data=> console.log(data));

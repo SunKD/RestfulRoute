@@ -22,7 +22,7 @@ module.exports = (app) => {
         c.update(req, res);
     });
 
-    app.delete('/tasks/:id', function (err, res) {
+    app.delete('/tasks/:id', function (req, res) {
         c.delete(req, res);
     })
 

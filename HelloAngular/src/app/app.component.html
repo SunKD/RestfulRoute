@@ -1,6 +1,6 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div style="text-align:center">
-  <h1>
+  <!-- <h1>
     {{ title }}
   </h1>
   <h1>All the tasks</h1>
@@ -18,3 +18,71 @@
     <p>{{showtask.title}}</p>
     <p>{{showtask.description}}</p>
   </div>
+  <h1>New Task</h1> -->
+  <div class="container">
+    <form (submit)="onSubmit()">
+      <!-- use the json pipe to see how newTask changes in real time -->
+      <p> {{ newTask | json }} </p>
+      <div class="row">
+        <div class="col-md-2">
+          <label>Title</label>
+        </div>
+        <div class="col-md-5">
+          <input type="text" name="newTask.title" [(ngModel)]="newTask.title" class="form-control" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-2">
+          <label>Description</label>
+        </div>
+        <div class="col-md-5">
+          <input type="text" name="newTask.description" [(ngModel)]="newTask.description" class="form-control" />
+        </div>
+        <div class="col-md-2">
+          <input type="submit" value="Create Task" class="btn btn-info btn-sm" />
+        </div>
+      </div>
+    </form>
+    
+    <div class="row">
+      <div class="col-md-6">
+        <h3>Task List</h3>
+        <div class="box">
+          <div *ngFor="let task of tasks">
+            <h5>{{task.title}}</h5>
+            <p>{{task.description}}</p>
+            <button (click)="onEditButtonClick(task._id)" class="btn btn-primary btn-sm">Edit</button>
+            <button (click)="onDeleteButtonClick(task._id)" class="btn btn-danger btn-sm">Delete</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        
+        <div *ngIf="editTask">
+            <h3>Edit a task</h3>
+            <form (submit)="onTaskUpdate(editTask._id)">
+                <div class="row">
+                  <div class="col-md-4">
+                    <label>Title</label>
+                  </div>
+                  <div class="col-md-5">
+                    <input type="text" name="editTask.title" [(ngModel)]="editTask.title" class="form-control" placeholder="editTask.title" />
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-4">
+                    <label>Description</label>
+                  </div>
+                  <div class="col-md-5">
+                    <input type="text" name="editTask.description" [(ngModel)]="editTask.description" class="form-control"  placeholder="editTask.description"/>
+                  </div>
+                  <div class="col-md-3">
+                    <input type="submit" value="Edit Task" class="btn btn-info btn-sm" />
+                  </div>
+                </div>
+              </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

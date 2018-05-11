@@ -7,48 +7,64 @@ import { HttpService } from './http.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = "Restful Tasks API";
+  newTask: any;
   tasks;
-  thirdtask;
-  showtask;
+  editTask;
+  deleteTask;
   constructor(private _httpService: HttpService) { 
     // this.thirdtask = {title: ""} //when you dont want to use the *ngif
   }
 
 
   ngOnInit() {
-  }
-
-  onButtonClicked():void{
+    this.newTask = {title: "", description: ""};
     this.getAllTasks();
   }
 
-  onButtonClickParam(id: string): void{
-    this.getOneTask(id);
-  }  
+  onSubmit(){
+    this.newTask ={'title': this.newTask.title, 'description': this.newTask.description};
+    let nTask = this._httpService.addTask(this.newTask);
+    nTask.subscribe(data=>{
+      console.log("submited form")
+      console.log(data);
+      this.getAllTasks();
+    })
+    this.newTask = {title: "", description: ""}
+  }
+
+  onEditButtonClick(id: string){
+    var edit = this._httpService.getTask(id);
+    edit.subscribe(data=>{
+      console.log(data);
+      this.editTask = data;
+    })
+  }
+
+  onTaskUpdate(id: string){
+    this.editTask ={'title': this.editTask.title, 'description': this.editTask.description};
+    let eTask = this._httpService.updateTask(this.editTask, id);
+    eTask.subscribe(data=>{
+      console.log("submited form")
+      console.log(data);
+      this.getAllTasks();
+    })
+    this.newTask = {title: "", description: ""}
+  }
+
+  onDeleteButtonClick(id: string){
+    let deleteTask = this._httpService.deleteTask(id);
+    deleteTask.subscribe(data=>{
+      console.log(data);
+      this.getAllTasks();
+    })
+  }
 
   getAllTasks() {
     let tasks = this._httpService.getTasks();
     tasks.subscribe(data => {
       console.log(data)
       this.tasks = data;
-      // this.thirdtask = data[2];
     })
   }
-
-  getOneTask(index: string) {
-    let tasks = this._httpService.getTask(index);
-    tasks.subscribe(data => {
-      console.log("oneTask")
-      console.log(data)
-      this.showtask = data;
-    })
-  }
-
-  // getThirdTask(index: number){
-  //   let tasks = this._httpService.getTasks();
-  //   tasks.sub
-  // }
-
 }
 
